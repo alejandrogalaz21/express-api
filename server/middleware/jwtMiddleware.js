@@ -1,6 +1,6 @@
 import passport from 'passport'
 import { Strategy, ExtractJwt } from 'passport-jwt'
-import User from './../../app/users/user'
+import User from './../../app/user/user'
 import { SECRET } from './../../keys'
 
 const options = {

@@ -1,3 +1,3 @@
-import { users } from './users/users.controller'
+import { user } from './user/user.controller'
 
-export const apiRoutes = [users]
+export const apiRoutes = [user]

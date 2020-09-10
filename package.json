@@ -8,7 +8,7 @@
     "build": "env ENV=production babel src -d dist",
     "serve": "node dist/index.js",
     "test": "mocha --require @babel/register",
-    "plop": "plop /plop/plopfile.js"
+    "plop": "plop"
   },
   "repository": {
     "type": "git",

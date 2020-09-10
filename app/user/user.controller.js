@@ -3,7 +3,7 @@ import { Router } from 'express'
 import { red, green, blue } from './../../helpers/chalk.helper'
 const router = new Router()
 
-export function usersController(Collection) {
+export function userController(Collection) {
   // ======
   // Routes
   // ======
@@ -145,4 +145,4 @@ export function usersController(Collection) {
   return router
 }
 
-export const users = router.use('/users', usersController(Model))
+export const user = router.use('/user', userController(Model))

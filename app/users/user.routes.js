@@ -1,8 +1,8 @@
 import { Router } from 'express'
-import { crudGenerator } from '../../core/crud.generator'
+import { usersGenerator } from '../../core/crud.generator'
 import model from './user'
 
 const router = new Router()
-const generator = crudGenerator(model)
+const generator = usersGenerator(model)
 
 export const users = router.use('/users', generator)

@@ -1,6 +1,7 @@
 import Model from './user'
 import { Router } from 'express'
 import { red, green, blue } from './../../helpers/chalk.helper'
+import bcrypt from 'bcryptjs'
 const router = new Router()
 
 export function userController(Collection) {
@@ -20,27 +21,13 @@ export function userController(Collection) {
     try {
       blue('users > controller > create')
       const newEntry = req.body
-
-      //fields validations
-      if (false) {
-        res.status(400).send({ message: 'validation message' })
-        return
-      }
-
-      // model validations
-      if (false) {
-        res.status(400).send({ message: 'validation message' })
-        return
-      }
-
-      const result = await Collection.create(newEntry)
-      green(result)
-      res.send(result)
-      return
+      const salt = await bcrypt.genSalt(10)
+      const hashed = await bcrypt.hash(password, salt)
+      const result = await Collection.create({ ...newEntry, password: hashed })
+      return res.send(result.select('-password'))
     } catch (error) {
       red(error)
-      res.status(500).send(error)
-      return
+      return res.status(500).send(error)
     }
   }
 

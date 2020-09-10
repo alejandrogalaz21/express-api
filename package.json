@@ -7,7 +7,8 @@
     "start": "env ENV=development nodemon index.js --exec babel-node",
     "build": "env ENV=production babel src -d dist",
     "serve": "node dist/index.js",
-    "test": "mocha --require @babel/register"
+    "test": "mocha --require @babel/register",
+    "plop": "plop /plop/plopfile.js"
   },
   "repository": {
     "type": "git",
@@ -45,6 +46,7 @@
     "mongoose": "^5.10.4",
     "morgan": "^1.10.0",
     "passport": "^0.4.1",
-    "passport-jwt": "^4.0.0"
+    "passport-jwt": "^4.0.0",
+    "plop": "^2.7.4"
   }
 }

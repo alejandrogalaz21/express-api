@@ -2,18 +2,18 @@ import { Router } from 'express'
 import { red, green, blue } from './../../helpers/chalk.helper'
 const router = new Router()
 
-export function {{camelCase name}}Controller() {
+export function authController() {
   // ======
   // Routes
   // ======
-  router.get('/', index)
+  router.get('/', create)
   
   // ======
   // Method
   // ======
   async function index(req, res) {
     try {
-      blue('{{camelCase name}}s > controller > index')
+      blue('auths > controller > index')
      
       const result = 'result'
       green(result)
@@ -30,4 +30,4 @@ export function {{camelCase name}}Controller() {
   return router
 }
 
-export const {{camelCase name}} = router.use('/{{camelCase name}}', {{camelCase name}}Controller())
+export const auth = router.use('/auth', authController())

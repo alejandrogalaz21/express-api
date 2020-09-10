@@ -1,12 +1,17 @@
-import express from 'express'
-import { red, green } from './../helpers/chalk.helper'
+import { Router } from 'express'
+import { red, green, blue } from './../helpers/chalk.helper'
 
 export function crudGenerator(Collection) {
+  const router = new Router()
+
   // ======
   // Create
   // ======
   const create = (req, res) => {
+    blue('Create')
+    console.log(Collection)
     const newEntry = req.body
+    console.log(newEntry)
     Collection.create(newEntry, (e, result) => {
       if (e) {
         red(e)
@@ -95,8 +100,6 @@ export function crudGenerator(Collection) {
   // ======
   // Routes
   // ======
-
-  const router = express.Router()
 
   router.post('/', create)
   router.get('/', readMany)

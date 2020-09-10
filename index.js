@@ -3,13 +3,13 @@ import http from 'http'
 import chalk from 'chalk'
 import express from 'express'
 //data source's
-import { mongooseConnection } from './db/mongoose.connection'
+import { mongooseConnection } from './server/db/mongoose.connection'
 // middleware
-import morgan from './middleware/morgan'
-import helmet from './middleware/helmet'
-import bodyParser from './middleware/bodyParser'
-import passportJwt from './middleware/jwtMiddleware'
-import cors from './middleware/cors'
+import morgan from './server/middleware/morgan'
+import helmet from './server/middleware/helmet'
+import bodyParser from './server/middleware/bodyParser'
+import passportJwt from './server/middleware/jwtMiddleware'
+import cors from './server/middleware/cors'
 import fileUpload from 'express-fileupload'
 // key's
 import { PORT, MONGO_DB } from './keys'
@@ -19,7 +19,7 @@ import { apiRoutes } from './app/routes'
 // Create express instance's
 const app = express()
 const api = http.Server(app)
-const files = new fileUpload()
+const files = fileUpload()
 
 // makes /foo and /Foo the same
 app.set('case sensitive routing', false)

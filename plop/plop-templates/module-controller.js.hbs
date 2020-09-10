@@ -1,9 +1,9 @@
-import Model from './user'
+import {{titleCase name}} from './{{camelCase name}}'
 import { Router } from 'express'
 import { red, green, blue } from './../../helpers/chalk.helper'
 const router = new Router()
 
-export function usersController(Collection) {
+export function {{camelCase name}}Controller(Collection) {
   // ======
   // Routes
   // ======
@@ -18,29 +18,25 @@ export function usersController(Collection) {
   // ======
   async function create(req, res) {
     try {
-      blue('users > controller > create')
+      blue('{{camelCase name}}s > controller > create')
       const newEntry = req.body
 
       //fields validations
       if (false) {
-        res.status(400).send({ message: 'validation message' })
-        return
+        return res.status(400).send({ message: 'validation message' })
       }
 
       // model validations
       if (false) {
-        res.status(400).send({ message: 'validation message' })
-        return
+        return res.status(400).send({ message: 'validation message' })
       }
 
       const result = await Collection.create(newEntry)
       green(result)
-      res.send(result)
-      return
+      return res.send(result)
     } catch (error) {
       red(error)
-      res.status(500).send(error)
-      return
+      return res.status(500).send(error)
     }
   }
 
@@ -49,16 +45,14 @@ export function usersController(Collection) {
   // =========
   async function readMany(req, res) {
     try {
-      blue('users > controller > readMany')
+      blue('{{camelCase name}}s > controller > readMany')
       let query = res.locals.query || {}
       const result = await Collection.find(query)
       green(result)
-      res.send(result)
-      return
+      return res.send(result)
     } catch (error) {
       red(error)
-      res.status(500).send(error)
-      return
+      return res.status(500).send(error)
     }
   }
 
@@ -68,16 +62,14 @@ export function usersController(Collection) {
 
   async function readOne(req, res) {
     try {
-      blue('users > controller > readOne')
+      blue('{{camelCase name}}s > controller > readOne')
       const { _id } = req.params
       const result = await Collection.findById(_id)
       green(result)
-      res.send(result)
-      return
+      return res.send(result)
     } catch (error) {
       red(error)
-      res.status(500).send(error)
-      return
+      return res.status(500).send(error)
     }
   }
 
@@ -86,7 +78,7 @@ export function usersController(Collection) {
   // ======
   async function update(req, res) {
     try {
-      blue('users > controller > update')
+      blue('{{camelCase name}}s > controller > update')
       //fields validations
       if (false) {
         res.status(400).send({ message: 'validation message' })
@@ -103,12 +95,10 @@ export function usersController(Collection) {
       const { _id } = req.params
       const result = await Collection.update({ _id }, { $set: changedEntry })
       green(result)
-      res.send(result)
-      return
+      return res.send(result)
     } catch (error) {
       red(error)
-      res.status(500).send(error)
-      return
+      return res.status(500).send(error)
     }
   }
 
@@ -117,7 +107,7 @@ export function usersController(Collection) {
   // ======
   async function remove(req, res) {
     try {
-      blue('users > controller > remove')
+      blue('{{camelCase name}}s > controller > remove')
       //fields validations
       if (false) {
         res.status(400).send({ message: 'validation message' })
@@ -133,16 +123,14 @@ export function usersController(Collection) {
       const { _id } = req.params
       const result = await Collection.remove(_id)
       green(result)
-      res.send(result)
-      return
+      return res.send(result)
     } catch (error) {
       red(error)
-      res.status(500).send(error)
-      return
+      return res.status(500).send(error)
     }
   }
 
   return router
 }
 
-export const users = router.use('/users', usersController(Model))
+export const {{camelCase name}} = router.use('/{{camelCase name}}', {{camelCase name}}Controller({{titleCase name}}))

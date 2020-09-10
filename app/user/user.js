@@ -32,12 +32,6 @@ const schema = new Schema(
       type: String,
       required: true
     },
-    lastName: {
-      desc: "The user's last name.",
-      trim: true,
-      type: String,
-      required: true
-    },
     age: {
       desc: "The users's age.",
       type: Number
@@ -50,12 +44,6 @@ const schema = new Schema(
       default: 'Others',
       required: true
     },
-    isActive: {
-      desc: 'is Active.',
-      type: Boolean,
-      default: true,
-      required: true
-    },
     userType: {
       desc: 'user roles.',
       trim: true,
@@ -63,13 +51,19 @@ const schema = new Schema(
       enum: ['Admin', 'User'],
       default: 'Admin',
       required: true
+    },
+    isActive: {
+      desc: 'is Active.',
+      type: Boolean,
+      default: true,
+      required: true
     }
   },
   schemaConfig
 )
 
-schema.virtual('fullName').get(function () {
-  return this.name + ' ' + this.lastName
-})
+//schema.virtual('fullName').get(function () {
+//  return this.name + ' ' + this.lastName
+//})
 
 export default mongoose.model('user', schema)

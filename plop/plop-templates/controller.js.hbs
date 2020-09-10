@@ -1,39 +1,21 @@
-import Model from './{{name}}'
 import { Router } from 'express'
 import { red, green, blue } from './../../helpers/chalk.helper'
 const router = new Router()
 
-export function {{name}}Controller(Collection) {
+export function {{camelCase name}}Controller() {
   // ======
   // Routes
   // ======
-  router.post('/', create)
-  router.get('/', readMany)
-  router.get('/:_id', readOne)
-  router.put('/:_id', update)
-  router.delete('/:_id', remove)
-
+  router.get('/', index)
+  
   // ======
-  // Create
+  // Method
   // ======
-  async function create(req, res) {
+  async function index(req, res) {
     try {
-      blue('{{name}}s > controller > create')
-      const newEntry = req.body
-
-      //fields validations
-      if (false) {
-        res.status(400).send({ message: 'validation message' })
-        return
-      }
-
-      // model validations
-      if (false) {
-        res.status(400).send({ message: 'validation message' })
-        return
-      }
-
-      const result = await Collection.create(newEntry)
+      blue('{{camelCase name}}s > controller > index')
+     
+      const result = 'result'
       green(result)
       res.send(result)
       return
@@ -44,105 +26,8 @@ export function {{name}}Controller(Collection) {
     }
   }
 
-  // =========
-  // Read many
-  // =========
-  async function readMany(req, res) {
-    try {
-      blue('{{name}}s > controller > readMany')
-      let query = res.locals.query || {}
-      const result = await Collection.find(query)
-      green(result)
-      res.send(result)
-      return
-    } catch (error) {
-      red(error)
-      res.status(500).send(error)
-      return
-    }
-  }
-
-  // ========
-  // Read one
-  // ========
-
-  async function readOne(req, res) {
-    try {
-      blue('{{name}}s > controller > readOne')
-      const { _id } = req.params
-      const result = await Collection.findById(_id)
-      green(result)
-      res.send(result)
-      return
-    } catch (error) {
-      red(error)
-      res.status(500).send(error)
-      return
-    }
-  }
-
-  // ======
-  // Update
-  // ======
-  async function update(req, res) {
-    try {
-      blue('{{name}}s > controller > update')
-      //fields validations
-      if (false) {
-        res.status(400).send({ message: 'validation message' })
-        return
-      }
-
-      // model validations
-      if (false) {
-        res.status(400).send({ message: 'validation message' })
-        return
-      }
-
-      const changedEntry = req.body
-      const { _id } = req.params
-      const result = await Collection.update({ _id }, { $set: changedEntry })
-      green(result)
-      res.send(result)
-      return
-    } catch (error) {
-      red(error)
-      res.status(500).send(error)
-      return
-    }
-  }
-
-  // ======
-  // Remove
-  // ======
-  async function remove(req, res) {
-    try {
-      blue('{{name}}s > controller > remove')
-      //fields validations
-      if (false) {
-        res.status(400).send({ message: 'validation message' })
-        return
-      }
-
-      // model validations
-      if (false) {
-        res.status(400).send({ message: 'validation message' })
-        return
-      }
-
-      const { _id } = req.params
-      const result = await Collection.remove(_id)
-      green(result)
-      res.send(result)
-      return
-    } catch (error) {
-      red(error)
-      res.status(500).send(error)
-      return
-    }
-  }
-
+  
   return router
 }
 
-export const {{name}} = router.use('/{{name}}', {{name}}Controller(Model))
+export const {{camelCase name}} = router.use('/{{camelCase name}}', {{camelCase name}}Controller())

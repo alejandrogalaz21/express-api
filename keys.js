@@ -1,6 +1,7 @@
 import dotenv from 'dotenv'
 dotenv.config()
 
+export const ENV = process.env.NODE_ENV || 'development'
 export const SECRET = process.env.SECRET || 'a211221684app'
 export const PORT = process.env.PORT || 5001
 export const EXPIRES_IN = process.env.EXPIRES_IN || '1 days'

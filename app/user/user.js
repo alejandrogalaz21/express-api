@@ -19,16 +19,20 @@ const schema = new Schema(
       index: true,
       unique: true,
       required: true,
-      validator: email => regex.email.test(email),
-      message: 'Not a valid email'
+      validate: {
+        validator: email => regex.email.test(email),
+        message: 'Not a valid email'
+      }
     },
     password: {
       desc: 'user password',
       trim: true,
       type: String,
       required: true,
-      validator: password => regex.password.test(password),
-      message: 'Minimum eight characters, at least one letter and one number'
+      validate: {
+        validator: password => regex.password.test(password),
+        message: 'Minimum eight characters, at least one letter and one number'
+      }
     },
     name: {
       desc: "The user's name.",

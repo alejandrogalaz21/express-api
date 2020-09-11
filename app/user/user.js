@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+import * as regex from './../../helpers/regex'
 
 const Schema = mongoose.Schema
 const ObjectId = mongoose.Schema.ObjectId
@@ -17,14 +18,17 @@ const schema = new Schema(
       type: String,
       index: true,
       unique: true,
-      required: true
+      required: true,
+      validator: email => regex.email.test(email),
+      message: 'Not a valid email'
     },
     password: {
       desc: 'user password',
       trim: true,
       type: String,
       required: true,
-      select: false
+      validator: password => regex.password.test(password),
+      message: 'Minimum eight characters, at least one letter and one number'
     },
     name: {
       desc: "The user's name.",
@@ -34,7 +38,11 @@ const schema = new Schema(
     },
     age: {
       desc: "The users's age.",
-      type: Number
+      type: Number,
+      validate: {
+        validator: v => v > 0,
+        message: 'Age must be greater than 0'
+      }
     },
     gender: {
       desc: 'user gender.',
